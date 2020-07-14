@@ -139,6 +139,7 @@ const IndexPage = () => {
             </Button>
           </Col>
         </Row>
+        <hr/>
         <Row>
           <Col
           className="text-center align-middle"

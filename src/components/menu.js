@@ -16,18 +16,24 @@ const Menu = ({menuOpen, fixed}) => {
             <div className="overlay-content">
                 <a
                 href="/" 
+                data-link-alt="Inicio"
+                >
+                    <span>Inicio</span>
+                </a>
+                <a
+                href="/" 
                 data-link-alt="Clases"
                 >
                     <span>Clases</span>
                 </a>
                 <a 
-                href="/" 
+                href="/about" 
                 data-link-alt="Sobre mí"
                 >
                     <span>Sobre mí</span>
                 </a>
                 <a
-                href="/" 
+                href="/poses" 
                 data-link-alt="Posturas"
                 >
                     <span>Posturas</span>

@@ -1,24 +1,16 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby";
-import Image from "gatsby-image";
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 
+import BadgeComponent from "../components/badge"
+import PosesComponent from "../components/poses"
+import PoseFullComponent from "../components/poseFullComponent"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+const filtros=[];
+const poseId = 12;
 
 const PosesPage = () => {
-
-  const imgs = useStaticQuery(graphql`
-    {
-      img1: file(relativePath: {eq: "poses/ardhaMatsyendrasana.png"}) {
-        sharp: childImageSharp {
-          fluid(quality:90, maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }`);
 
   return(
     <Layout>
@@ -28,51 +20,51 @@ const PosesPage = () => {
       className="mt-4 mb-4"
       >
         <Row>
-          <Col
-          md={4}
-          sm={6}
-          >
-            <Image
-              fluid={imgs.img1.sharp.fluid}
-              alt="Clases en línea"
-              className="mt-4 mb-4"
-            />
-            <h3>Ardha Matsyendrasana</h3>
-          </Col>
-          <Col
-          md={4}
-          sm={6}
-          >
-            <Image
-              fluid={imgs.img1.sharp.fluid}
-              alt="Clases en línea"
-              className="mt-4 mb-4"
-            />
-            <h3>Ardha Matsyendrasana</h3>
-          </Col>
-          <Col
-          md={4}
-          sm={6}
-          >
-            <Image
-              fluid={imgs.img1.sharp.fluid}
-              alt="Clases en línea"
-              className="mt-4 mb-4"
-            />
-            <h3>Ardha Matsyendrasana</h3>
-          </Col>
-          <Col
-          md={4}
-          sm={6}
-          >
-            <Image
-              fluid={imgs.img1.sharp.fluid}
-              alt="Clases en línea"
-              className="mt-4 mb-4"
-            />
-            <h3>Ardha Matsyendrasana</h3>
+          <Col>
+            <h1>Asanas (Posturas)</h1>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Form inline>
+              <Row>
+                <Col>
+                <Form.Control
+                  className="mb-2 mr-sm-2"
+                  id="inlineFormInputName2"
+                  placeholder="Buscar"
+                />
+                <Button type="submit" className="mb-2">
+                  Filtrar
+                </Button>
+                </Col>
+              </Row>
+            </Form>
+            <BadgeComponent
+              text="Ardha"
+              type="warning"
+            />
+            <BadgeComponent
+              text="Giro"
+              type="warning"
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col
+          md={3}
+          >
+            <PosesComponent
+              filtros={filtros}
+            />
+          </Col>
+          <Col>
+            <PoseFullComponent
+              poseId={poseId}
+            />
+          </Col>
+        </Row>
+      
       </Container>
 
     </Layout>

@@ -5,6 +5,7 @@
     width: 100%;
     transition:1s;
     z-index:1;
+    background-color: #FFF;
     .navbar-brand{
         text-align: center;
         margin:0;
@@ -21,17 +22,17 @@
         }
         h4{
             font-family: Belleza;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin:0;
             opacity: 1;
             transition:0.3s;
             visibility: visible;
         }
         h3{
-            font-family: Belleza;
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-family: 'Beaujolais';
+            font-size: 2rem;
             margin:0;
+            margin-top:-8px;
             opacity: 1;
             transition:0.3s;
             visibility: visible;
@@ -88,7 +89,7 @@
             }
             h3{
                 position: absolute;
-                font-size:0.8rem;
+                font-size:1.2rem;
                 margin-top:-22px;
                 margin-left:50px;/*
                 opacity: 0;

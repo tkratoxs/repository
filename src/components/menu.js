@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from "classnames";
+import { Link } from 'gatsby';
 
 import "./scss/menuFullScreen.scss";
 
-const Menu = ({menuOpen, fixed}) => {
+const Menu = ({menuOpen,setMenuOpen, fixed, setVisible}) => {
     return ( 
         <div
         className={classNames({
@@ -19,12 +20,6 @@ const Menu = ({menuOpen, fixed}) => {
                 data-link-alt="Inicio"
                 >
                     <span>Inicio</span>
-                </a>
-                <a
-                href="/" 
-                data-link-alt="Clases"
-                >
-                    <span>Clases</span>
                 </a>
                 <a 
                 href="/about" 
@@ -44,12 +39,19 @@ const Menu = ({menuOpen, fixed}) => {
                 >
                     <span>Vídeos</span>
                 </a>
-                <a
-                href="/" 
+                <Link
+                to="/contacto" 
                 data-link-alt="Contacto"
+                state={{
+                    modal: true
+                }}
+                onClick={()=>{
+                    setMenuOpen(false);
+                    setVisible(false);
+                }}
                 >
                     <span>Contacto</span>
-                </a>
+                </Link>
             </div>
         </div>
      );

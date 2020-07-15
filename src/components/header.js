@@ -7,7 +7,7 @@ import classNames from "classnames";
 
 import "./scss/header.scss";
 
-const Header = ({ siteTitle, fixed }) => {
+const Header = ({ siteTitle, fixed, visible }) => {
   
   
   const imgs = useStaticQuery(graphql`
@@ -32,7 +32,8 @@ const Header = ({ siteTitle, fixed }) => {
       <Navbar
       className={classNames({
           "navbar-header": true,
-          fixed: fixed
+          fixed: fixed,
+          visible: visible
         })}
       >
         <Navbar.Brand 

@@ -30,7 +30,9 @@ const Layout = ({ children }) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [fixed, setFixed] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [scrollTop, setScrollTop] = useState(0);
+  const [prevPos, setPrevPos] = useState(0);
 
   const onScroll = (e) => {
     setScrollTop(window.pageYOffset);
@@ -41,10 +43,24 @@ const Layout = ({ children }) => {
   },[]);
 
   useEffect(() => {
+    //FIXED
     if(scrollTop>50)
       setFixed(true);
     else
       setFixed(false);
+
+    //HIDE-SHOW NAVBAR
+    if(scrollTop < 150){
+      setVisible(true);
+    }
+    else if (prevPos > scrollTop){
+      setVisible(true);
+    }
+    else{
+      setVisible(false);
+    }
+    setPrevPos(scrollTop);
+
   }, [scrollTop]);
 
   return (
@@ -55,10 +71,14 @@ const Layout = ({ children }) => {
         <Header 
           siteTitle={data.site.siteMetadata.title} 
           fixed={fixed}
+          visible={visible}
         />
         
         <Menu
           menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+          fixed={fixed}
+          setVisible={setVisible}
         />
 
         <HamburgerMenu

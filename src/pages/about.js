@@ -48,7 +48,7 @@ const AboutPage = () => {
             <p>Practiqué estilos y métodos muy variados e hice dos formaciones en hatha yoga y yoga restaurativo, pero fue la profundidad del yoga Iyengar la que me cautivó.</p>
             <p>Cursé el programa de formación para profesores impartido por Chantal Gómez Jauffred y Paul King. Cuento con la certificación Iyengar, continuo estudiando, preparándome y practicando bajo las enseñanzas de este método.</p>
             <p>He estudiado directamente con la familia Iyengar en Pune, India y he tomado clases y talleres intensivos con profesores senior como Gloria Goldberg (EUA), Christian Pisano (Francia), David Meloni (Italia), Jawahar Banghera (India), Peter Scott (Australia), Usha Devi (Suiza), Alan Brown (Inglaterra), entre otros además de cursos de filosofía del yoga y sánscrito con el Dr. Roberto García.</p>
-            <p>Para mí, el yoga es una vía para conectar con su interior, una herramienta de transformación no solo a nivel físico sino a niveles más profundos.Su enseñanza es entusiasta, busca combinar el dinamismo y la frescura con la precisión y atención características del método</p>
+            <p>Para mí, el yoga es una vía para conectar con mi interior, una herramienta de transformación no solo a nivel físico sino a niveles más profundos. Trato de que mi enseñanza sea entusiasta, busco combinar el dinamismo y la frescura con la precisión y atención características del método Iyengar.</p>
           </Col>
         </Row>
       </Container>

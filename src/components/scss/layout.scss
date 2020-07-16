@@ -1,12 +1,8 @@
-@font-face {font-family: Beaujolais;
-    src: url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.eot"); /* IE9*/
-    src: url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.woff2") format("woff2"), /* chrome、firefox */
-    url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.woff") format("woff"), /* chrome、firefox */
-    url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url("fonts/e1f5bed9447ec6ee5cfbd7e2cc762667.svg#Beaujolais One W00 Regular") format("svg"); /* iOS 4.1- */
-  }
-
+@font-face {
+    font-family: "Beaujolais"; 
+    src: url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.eot"); 
+    src: url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.woff") format("woff"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.svg#Beaujolais") format("svg"); 
+}
 body{
 }
 .main-header{

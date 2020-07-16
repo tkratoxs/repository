@@ -1,12 +1,12 @@
-import React, {useState, useContext} from 'react';
-import {Form, Row, Col, Button} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Form, Col, Button} from "react-bootstrap";
 import classnames from "classnames";
 import styled from '@emotion/styled';
 import axios from 'axios';
 
 const Pcol = styled.p`
     text-align:center;
-    color:#FFF;
+    color:#000;
     font-weight:300;
     margin-bottom:100px;
     a{
@@ -16,14 +16,14 @@ const Pcol = styled.p`
 `;
 const Titulo = styled.p`
     text-align:center;
-    color:#FFF;
+    color:#000;
     font-size:2rem;
     font-weight:100;
 `;
 
 const FormControl = styled(Form.Control)`
-    background-color:#000;
-    color:#FFF;
+    background-color:#FFF;
+    color:#000;
     border-width:0;
     border-radius:0;
     border-bottom:solid 1px #ced4da;
@@ -31,19 +31,19 @@ const FormControl = styled(Form.Control)`
     outline-offset: none !important;
     margin-bottom:20px;
     &::placeholder{
-        color:#FFF;
+        color:#000;
     }
     &:focus{
-        background-color:#000;
-        color:#FFF;
+        background-color:#FFF;
+        color:#000;
         outline:none !important;
         outline-offset: none !important;
         box-shadow: inset 0 -1px 0 #ced4da;
     }
 `;
 const FormControlTextArea = styled(Form.Control)`
-    background-color:#000;
-    color:#FFF;
+    background-color:#FFF;
+    color:#000;
     border-radius:0;
     border:solid 1px #ced4da;
     outline:none !important;
@@ -51,11 +51,11 @@ const FormControlTextArea = styled(Form.Control)`
     margin-top:10px;
     margin-bottom:10px;
     &::placeholder{
-        color:#FFF;
+        color:#000;
     }
     &:focus{
-        background-color:#000;
-        color:#FFF;
+        background-color:#FFF;
+        color:#000;
         outline:none !important;
         outline-offset: none !important;
         box-shadow: inset 0 -1px 0 #ced4da;
@@ -86,8 +86,8 @@ const FormStyled = styled(Form)`
 const Boton = styled(Button)`
     &, &:hover, &:focus, &:active{
         color:#FFF;
-        background-color:#c6005f !important;
-        border-color:#c6005f !important;
+        background-color:#FCE202 !important;
+        border-color:#FCE202 !important;
         border-radius:0;
         padding:5px 30px;
         border-width:0;
@@ -178,22 +178,33 @@ const Contacto = () => {
                 Contacto
             </Titulo>
             <Form.Row>
-                <Col sm={6}>
-                    <FormGroupL controlId="formGridNombre">
+                <Col>
+                    <Form.Group controlId="formGridNombre">
                         <FormControl type="text" placeholder="Nombre" name="nombre" className={classnames({"form-control-error": errorNombre})} onChange={handleChange} onClick={() => handleErrorNombre(false)} />
-                    </FormGroupL>
+                    </Form.Group>
                 </Col>
             </Form.Row>
             <Form.Row>
-                <Col sm={6}>
-                    <FormGroupL controlId="formGridEmail">
+                <Col>
+                    <Form.Group controlId="formGridEmail">
                         <FormControl type="mail" placeholder="Email" name="email" className={classnames({"form-control-error": errorEmail})} onChange={handleChange} onClick={() => handleErrorEmail(false)} />
-                    </FormGroupL>
+                    </Form.Group>
                 </Col>
-                <Col sm={6}>
-                    <FormGroupR controlId="formGridTel">
+            </Form.Row>
+            <Form.Row>
+                <Col>
+                    <Form.Group controlId="formGridTel">
                         <FormControl type="number" placeholder="Teléfono" name="telefono" onChange={handleChange} />
-                    </FormGroupR>
+                    </Form.Group>
+                </Col>
+            </Form.Row>
+            <Form.Row>
+                <Col>
+                    <Form.Control as="select">
+                        <option disabled selected>Selecciona una opción</option>
+                        <option>Clases en línea</option>
+                        <option>Clases particulares</option>
+                    </Form.Control>
                 </Col>
             </Form.Row>
             <Form.Row>

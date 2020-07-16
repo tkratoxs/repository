@@ -1,5 +1,4 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap';
 import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import BadgeComponent from './badge';

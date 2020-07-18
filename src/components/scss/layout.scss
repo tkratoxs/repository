@@ -4,6 +4,9 @@
     src: url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.woff") format("woff"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/e1f5bed9447ec6ee5cfbd7e2cc762667.svg#Beaujolais") format("svg"); 
 }
 body{
+    .msg-error{
+        color:#F00;
+    }
 }
 .main-header{
     overflow: hidden;

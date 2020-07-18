@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import BackgroundImage from 'gatsby-background-image';
 import Image from "gatsby-image";
 import styled from '@emotion/styled';
-import {Container, Row, Col, Button, Modal} from 'react-bootstrap';
+import {Container, Row, Col, Modal} from 'react-bootstrap';
 import Carousel from "react-multi-carousel";
 
 import Layout from "../components/layout"
@@ -33,11 +33,11 @@ const ImageBackground = styled(BackgroundImage)`
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 4000, min: 576 },
+    breakpoint: { max: 4000, min: 768 },
     items: 3
   },
   mobile: {
-    breakpoint: { max: 576, min: 0 },
+    breakpoint: { max: 768, min: 0 },
     items: 1
   }
 };
@@ -84,6 +84,7 @@ const IndexPage = () => {
     }`);
 
     const [show, setShow] = useState(false);
+    const [opcionSelect, setOpcionSelect] = useState('');
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -145,6 +146,7 @@ const IndexPage = () => {
               onClick={
                 (e) => {
                   e.preventDefault();
+                  setOpcionSelect('claseszoom');
                   handleShow();
                 }
               }
@@ -164,20 +166,20 @@ const IndexPage = () => {
               Clases privadas
             </h2>
             <h4>
-              En línea o a domicilio
+              En línea o presenciales
             </h4>
             <Carousel
-              swipeable={false}
+              swipeable={true}
               draggable={false}
-              showDots={false}
+              showDots={true}
               arrows={false}
               responsive={responsive}
               ssr={true} // means to render carousel on server-side.
               infinite={true}
               autoPlay={false}
               keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
+              customTransition="all 1"
+              transitionDuration={1000}
               containerClass="carousel-container"
               //removeArrowOnDeviceType={["tablet", "mobile"]}
               //deviceType={this.props.deviceType}
@@ -185,7 +187,15 @@ const IndexPage = () => {
               itemClass="carousel-item-padding-40-px"
             >
               <div
-              className="p-4">
+              className="p-4"
+              onClick={
+                () => {
+                  setOpcionSelect('clasesparres');
+                  handleShow();
+                }
+              }
+              role="button"
+              >
                 <Image
                   fluid={imgs.imgCar3.sharp.fluid}
                   alt="Yoga Restaurativo"
@@ -193,7 +203,15 @@ const IndexPage = () => {
                 <h3>Restaurativo</h3>
               </div>
               <div
-              className="p-4">
+              className="p-4"
+              onClick={
+                () => {
+                  setOpcionSelect('clasespar');
+                  handleShow();
+                }
+              }
+              role="button"
+              >
                 <Image
                   fluid={imgs.imgCar1.sharp.fluid}
                   alt="Yoga Avanzados"
@@ -201,7 +219,15 @@ const IndexPage = () => {
                 <h3>Avanzados</h3>
               </div>
               <div
-              className="p-4">
+              className="p-4"
+              onClick={
+                () => {
+                  setOpcionSelect('clasespar');
+                  handleShow();
+                }
+              }
+              role="button"
+              >
                 <Image
                   fluid={imgs.imgCar2.sharp.fluid}
                   alt="Yoga Principiantes"
@@ -209,9 +235,6 @@ const IndexPage = () => {
                 <h3>Principiantes</h3>
               </div>
             </Carousel>
-            <Button>
-              Información
-            </Button>
           </Col>
         </Row>
       </Container>
@@ -223,11 +246,12 @@ const IndexPage = () => {
       size="xl"
       >
         <Modal.Header closeButton>
-          Clases en línea por Zoom
+          Contacto
         </Modal.Header>
         <Modal.Body>
           <ContactoForm
-            opcionSelect="claseszoom"
+            opcionSelect={opcionSelect}
+            handleClose={handleClose}
           />
         </Modal.Body>
       </Modal>

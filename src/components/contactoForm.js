@@ -3,6 +3,7 @@ import {Form, Col, Button} from "react-bootstrap";
 import classnames from "classnames";
 import styled from '@emotion/styled';
 import DayPicker, { DateUtils } from 'react-day-picker';
+import axios from 'axios';
 
 import 'react-day-picker/lib/style.css';
 
@@ -67,7 +68,7 @@ const FormStyled = styled(Form)`
 `;
 const Boton = styled(Button)`
     &, &:hover, &:focus, &:active{
-        color:#FFF;
+        color:#000;
         background-color:#FCE202 !important;
         border-color:#FCE202 !important;
         border-radius:0;
@@ -76,24 +77,27 @@ const Boton = styled(Button)`
         text-align:center;
     }
 `;
-const encode = data => {
-    return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
 
-const ContactoForm = ({opcionSelect}) => {
+const PmsgForm = styled.p`
+    font-weight:500;
+    color: #000;
+    text-align:center;
+`;
+
+const ContactoForm = ({opcionSelect, handleClose}) => {
 
     const disabledDays = [
         {before: new Date()},
         {daysOfWeek: [0,2,5,6]}
     ];
-    const [formulario, handleFormulario] = useState({nombre:"",telefono:"",email:"", opcion:opcionSelect,diasClase:[],pregunta:""});
+    const [formulario, handleFormulario] = useState({nombre:"",email:"", opcion:opcionSelect,diasClase:[],claseparticular:"",pregunta:""});
     const [selectedDays, setSelectedDays] = useState([]);
     const [errorNombre, handleErrorNombre] = useState(false);
     const [errorEmail, handleErrorEmail] = useState(false);
+    const [errorClasesZoom, handleErrorClasesZoom] = useState(false);
 
     const handleDayClick = (day, { selected }) => {
+        handleErrorClasesZoom(false);
         if (selected) {
             setSelectedDays(selectedDays.filter(selectedDay =>
                 !DateUtils.isSameDay(selectedDay, day))
@@ -118,6 +122,27 @@ const ContactoForm = ({opcionSelect}) => {
             [e.target.name]: e.target.value
         });
     }
+    const [serverState, setServerState] = useState({
+        submitting: false,
+        status: null,
+        msg: ''
+    });
+    const handleServerResponse = (ok, msg, form) => {
+        setServerState({
+          submitting: true,
+          status: ok,
+          msg: msg
+        });
+        if (ok) {
+            handleErrorNombre(false);
+            handleErrorEmail(false);
+            //handleFormulario({nombre:"",telefono:"",email:"", opcion:"no",diasClase:[],pregunta:""});
+            form.reset();
+            if(handleClose!==null){
+                setTimeout(handleClose.bind(this), 2500);
+            }
+        }
+    };
 
     const handleOnSubmit = e => {
         e.preventDefault();
@@ -133,26 +158,43 @@ const ContactoForm = ({opcionSelect}) => {
             handleErrorEmail(true);
             return;
         }
+        if(formulario.opcion==="claseszoom"){
+            if(formulario.diasClase.length===0){
+                handleErrorClasesZoom(true);
+                return;
+            }
+        }
 
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({
-                "form-name": form.getAttribute("name"),
-                ...formulario,
-            }),
-        })
-        .then(() => alert("OK"))
-        .catch(error => alert(error));
+        setServerState({ 
+            submitting: true,
+            status: null,
+            msg: '' 
+        });
+        
+        axios({
+            method: "post",
+            url: "https://getform.io/f/4d0512a6-6d47-4c53-a372-a64d32fab71e",
+            data: new FormData(form)
+        }).then(r => {
+            handleServerResponse(true, "OK!", form);
+        }).catch(r => {
+            handleServerResponse(false, r.response, form);
+        });
         
     }
 
     return ( 
         <>
-        <FormStyled
+        {serverState.status?
+            <PmsgForm>
+                {
+                formulario.opcion==="claseszoom"?"Gracias, en un lapso no mayor a 24 horas recibirás en el correo proporcionado el enlace para conectarte a la clase.":"Gracias, te contactaremos por el correo proporcionado."
+                }
+            </PmsgForm>
+        :
+            <FormStyled
             name="contacto-gilbertoyoga"
             onSubmit={handleOnSubmit}
-            data-netlify="true"
         >
             <Form.Row>
                 <Col>
@@ -170,33 +212,51 @@ const ContactoForm = ({opcionSelect}) => {
             </Form.Row>
             <Form.Row>
                 <Col>
-                    <Form.Group controlId="formGridTel">
-                        <FormControl type="number" placeholder="Teléfono" name="telefono" onChange={handleChange} />
-                    </Form.Group>
-                </Col>
-            </Form.Row>
-            <Form.Row>
-                <Col>
                     <FormControl name="opcion" as="select" value={formulario.opcion} onChange={handleChange}>
                         <option value="no" disabled>Estoy interesado(a) en:</option>
                         <option value="claseszoom">Clases en línea</option>
-                        <option value="clasesplin">Clases particulares en línea</option>
-                        <option value="clasespprn">Clases particulares presenciales</option>
+                        <option value="clasespar">Clases particulares</option>
+                        <option value="clasesparres">Clases particulares restaurativa</option>
                         <option value="otro">Otro</option>
                     </FormControl>
                 </Col>
             </Form.Row>
             {formulario.opcion==="claseszoom"?
+            <>
+                <Form.Row>
+                    <Col
+                    className={classnames({
+                        "msg-error": errorClasesZoom
+                    })}
+                    >
+                        Elige los días que tomarás clase<br/>
+                        las clases son lunes, miércoles y jueves de 19 a 20:15 hrs
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col>
+                        <DayPicker
+                        selectedDays={selectedDays}
+                        onDayClick={handleDayClick}
+                        disabledDays={disabledDays}
+                        />
+                    </Col>
+                </Form.Row>
+            </>
+            :null}
+            {formulario.opcion==="clasespar"||formulario.opcion==="clasesparres"?
+                <Form.Row>
+                    <Col>
+                        <Form.Check inline defaultChecked label="Presencial" type="radio" name="claseparticular" />
+                        <Form.Check inline label="En línea" type="radio" name="claseparticular" />
+                    </Col>
+                </Form.Row>
+            :null}
             <Form.Row>
                 <Col>
-                    <DayPicker
-                    selectedDays={selectedDays}
-                    onDayClick={handleDayClick}
-                    disabledDays={disabledDays}
-                    />
+                    <FormControl type="hidden" name="diasClase" value={formulario.diasClase} />
                 </Col>
             </Form.Row>
-            :null}
             <Form.Row>
                 <Col>
                     <Form.Group controlId="formGridTextarea">
@@ -204,10 +264,22 @@ const ContactoForm = ({opcionSelect}) => {
                     </Form.Group>
                 </Col>
             </Form.Row>
+            {(errorNombre||errorEmail||errorClasesZoom)?
+            <Form.Row>
+                <Col className="msg-error">
+                    Por favor rellena los campos obligatorios
+                </Col>
+            </Form.Row>
+            :null}
             <Boton variant="primary" type="submit">
-                Enviar
+                {serverState.submitting?
+                    "Enviando"
+                :
+                    "Enviar"
+                }
             </Boton>
         </FormStyled>
+        }
         </>
      );
 }

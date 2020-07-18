@@ -119,6 +119,7 @@ const Layout = ({ children }) => {
         <Modal.Body>
           <ContactoForm
           opcionSelect="no"
+          handleClose={handleClose}
           />
         </Modal.Body>
       </Modal>

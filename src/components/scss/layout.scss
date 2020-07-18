@@ -14,3 +14,33 @@ body{
 .main-container{
     z-index: 0;
 }
+.modal-contacto{
+    padding:0;
+    .modal-dialog{
+        max-width: 100%;
+        margin:0;
+        padding: 15px;
+        .modal-content{
+            .modal-header{
+                justify-content: center;
+                font-size: 1.5rem;
+                font-weight: bold;
+                border-bottom-width: 0;
+                .close{
+                    margin:0;
+                    padding: 0;
+                    position: absolute;
+                    right:15px;
+                    top:15px;
+                }
+            }
+        }
+    }
+    &.show{
+        .modal-dialog{
+            /*
+            top:50%;
+            transform: translateY(-50%);*/
+        }
+    }
+}

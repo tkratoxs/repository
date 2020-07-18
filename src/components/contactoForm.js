@@ -1,25 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form, Col, Button} from "react-bootstrap";
 import classnames from "classnames";
 import styled from '@emotion/styled';
-import axios from 'axios';
+import DayPicker, { DateUtils } from 'react-day-picker';
 
-const Pcol = styled.p`
-    text-align:center;
-    color:#000;
-    font-weight:300;
-    margin-bottom:100px;
-    a{
-        color:#FFF;
-        text-decoration:none;
-    }
-`;
-const Titulo = styled.p`
-    text-align:center;
-    color:#000;
-    font-size:2rem;
-    font-weight:100;
-`;
+import 'react-day-picker/lib/style.css';
 
 const FormControl = styled(Form.Control)`
     background-color:#FFF;
@@ -40,16 +25,25 @@ const FormControl = styled(Form.Control)`
         outline-offset: none !important;
         box-shadow: inset 0 -1px 0 #ced4da;
     }
+    &.form-control-error{
+        border-color:red;
+        color:red;
+        &::placeholder{
+            color:red;
+        }
+    }
 `;
 const FormControlTextArea = styled(Form.Control)`
     background-color:#FFF;
     color:#000;
     border-radius:0;
-    border:solid 1px #ced4da;
+    border-width:0;
+    border-bottom:solid 1px #ced4da;
     outline:none !important;
     outline-offset: none !important;
     margin-top:10px;
     margin-bottom:10px;
+    resize:none;
     &::placeholder{
         color:#000;
     }
@@ -59,18 +53,6 @@ const FormControlTextArea = styled(Form.Control)`
         outline:none !important;
         outline-offset: none !important;
         box-shadow: inset 0 -1px 0 #ced4da;
-    }
-`;
-const FormGroupL = styled(Form.Group)`
-    padding-right:10%;
-    @media only screen and (max-width : 575px) {
-        padding-right:0;
-    }
-`;
-const FormGroupR = styled(Form.Group)`
-    padding-left:10%;
-    @media only screen and (max-width : 575px) {
-        padding-left:0;
     }
 `;
 const FormStyled = styled(Form)`
@@ -94,22 +76,41 @@ const Boton = styled(Button)`
         text-align:center;
     }
 `;
-const PmsgForm = styled.p`
-    font-weight:500;
-    color: #FFF;
-    text-align:center;
-`;
-const PmsgFormError = styled.p`
-    font-weight:500;
-    color: #FF0000;
-    text-align:center;
-`;
+const encode = data => {
+    return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
-const Contacto = () => {
+const ContactoForm = ({opcionSelect}) => {
 
-    const [formulario, handleFormulario] = useState({nombre:"",compania:"",telefono:"",email:"",pregunta:""});
+    const disabledDays = [
+        {before: new Date()},
+        {daysOfWeek: [0,2,5,6]}
+    ];
+    const [formulario, handleFormulario] = useState({nombre:"",telefono:"",email:"", opcion:opcionSelect,diasClase:[],pregunta:""});
+    const [selectedDays, setSelectedDays] = useState([]);
     const [errorNombre, handleErrorNombre] = useState(false);
     const [errorEmail, handleErrorEmail] = useState(false);
+
+    const handleDayClick = (day, { selected }) => {
+        if (selected) {
+            setSelectedDays(selectedDays.filter(selectedDay =>
+                !DateUtils.isSameDay(selectedDay, day))
+            );
+        } else {
+            //selectedDays.push(day);
+            setSelectedDays([...selectedDays, day]);
+        }
+        //setSelectedDays(selectedDays);
+    }
+
+    useEffect(() => {
+        handleFormulario({
+            ...formulario,
+            "diasClase": selectedDays
+        });
+    }, [selectedDays]);
 
     const handleChange = e => {
         handleFormulario({
@@ -117,24 +118,6 @@ const Contacto = () => {
             [e.target.name]: e.target.value
         });
     }
-    const [serverState, setServerState] = useState({
-        submitting: false,
-        status: null,
-        msg: ''
-    });
-    const handleServerResponse = (ok, msg, form) => {
-        setServerState({
-          submitting: true,
-          status: ok,
-          msg: msg
-        });
-        if (ok) {
-            handleErrorNombre(false);
-            handleErrorEmail(false);
-            handleFormulario({nombre:"",compania:"",telefono:"",email:"",pregunta:""});
-            form.reset();
-        }
-    };
 
     const handleOnSubmit = e => {
         e.preventDefault();
@@ -151,32 +134,26 @@ const Contacto = () => {
             return;
         }
 
-        setServerState({ 
-            submitting: true,
-            status: null,
-            msg: '' 
-        });
-        
-        axios({
-            method: "post",
-            url: "https://getform.io/f/4d0512a6-6d47-4c53-a372-a64d32fab71e",
-            data: new FormData(form)
-        }).then(r => {
-            handleServerResponse(true, "OK!", form);
-        }).catch(r => {
-            handleServerResponse(false, r.response.data.error, form);
-        });
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+                "form-name": form.getAttribute("name"),
+                formulario,
+            }),
+        })
+        .then(() => alert("OK"))
+        .catch(error => alert(error));
         
     }
 
     return ( 
         <>
         <FormStyled
+            name="contacto-gilbertoyoga"
             onSubmit={handleOnSubmit}
+            data-netlify="true"
         >
-            <Titulo>
-                Contacto
-            </Titulo>
             <Form.Row>
                 <Col>
                     <Form.Group controlId="formGridNombre">
@@ -200,13 +177,26 @@ const Contacto = () => {
             </Form.Row>
             <Form.Row>
                 <Col>
-                    <Form.Control as="select">
-                        <option disabled selected>Selecciona una opción</option>
-                        <option>Clases en línea</option>
-                        <option>Clases particulares</option>
-                    </Form.Control>
+                    <FormControl name="opcion" as="select" value={formulario.opcion} onChange={handleChange}>
+                        <option value="no" disabled>Estoy interesado(a) en:</option>
+                        <option value="claseszoom">Clases en línea</option>
+                        <option value="clasesplin">Clases particulares en línea</option>
+                        <option value="clasespprn">Clases particulares presenciales</option>
+                        <option value="otro">Otro</option>
+                    </FormControl>
                 </Col>
             </Form.Row>
+            {formulario.opcion==="claseszoom"?
+            <Form.Row>
+                <Col>
+                    <DayPicker
+                    selectedDays={selectedDays}
+                    onDayClick={handleDayClick}
+                    disabledDays={disabledDays}
+                    />
+                </Col>
+            </Form.Row>
+            :null}
             <Form.Row>
                 <Col>
                     <Form.Group controlId="formGridTextarea">
@@ -214,26 +204,12 @@ const Contacto = () => {
                     </Form.Group>
                 </Col>
             </Form.Row>
-            {serverState.msg!==''?
-                <>
-                {serverState.status?
-                    <PmsgForm>
-                        Gracias por ponerte en contacto, en breve recibiras respuesta al correo proporcionado.
-                    </PmsgForm>
-                :
-                    <PmsgFormError>
-                        {serverState.msg}
-                    </PmsgFormError>
-                }
-                </>
-                :
-                <Boton variant="primary" type="submit">
-                    Enviar
-                </Boton>
-            }
+            <Boton variant="primary" type="submit">
+                Enviar
+            </Boton>
         </FormStyled>
         </>
      );
 }
  
-export default Contacto;
+export default ContactoForm;

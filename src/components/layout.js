@@ -9,10 +9,12 @@ import React, {useState, useEffect} from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby";
 import classNames from "classnames";
+import {Modal} from "react-bootstrap";
 
 import Header from "./header";
 import HamburgerMenu from "./hamburgerMenu";
 import Menu from "./menu";
+import ContactoForm from "./contactoForm";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './scss/layout.scss';
@@ -33,6 +35,10 @@ const Layout = ({ children }) => {
   const [visible, setVisible] = useState(true);
   const [scrollTop, setScrollTop] = useState(0);
   const [prevPos, setPrevPos] = useState(0);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  //const handleShow = () => setShow(true);
 
   const onScroll = (e) => {
     setScrollTop(window.pageYOffset);
@@ -79,6 +85,7 @@ const Layout = ({ children }) => {
           setMenuOpen={setMenuOpen}
           fixed={fixed}
           setVisible={setVisible}
+          setShow={setShow}
         />
 
         <HamburgerMenu
@@ -92,11 +99,30 @@ const Layout = ({ children }) => {
             fixed: fixed
           })}
       >
-        <main>{children}</main>
+        <main>
+          {children}
+        </main>
       </div>
       <footer>
         © {new Date().getFullYear()}
       </footer>
+
+      <Modal 
+      className="modal-contacto"
+      show={show}
+      onHide={handleClose}
+      size="xl"
+      >
+        <Modal.Header closeButton>
+          Contacto
+        </Modal.Header>
+        <Modal.Body>
+          <ContactoForm
+          opcionSelect="no"
+          />
+        </Modal.Body>
+      </Modal>
+
     </>
   )
 }

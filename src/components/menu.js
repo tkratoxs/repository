@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 
 import "./scss/menuFullScreen.scss";
 
-const Menu = ({menuOpen,setMenuOpen, fixed, setVisible}) => {
+const Menu = ({menuOpen,setMenuOpen, fixed, setVisible, setShow}) => {
     return ( 
         <div
         className={classNames({
@@ -42,12 +42,14 @@ const Menu = ({menuOpen,setMenuOpen, fixed, setVisible}) => {
                 <Link
                 to="/contacto" 
                 data-link-alt="Contacto"
-                state={{
+                /*state={{
                     modal: true
-                }}
-                onClick={()=>{
+                }}*/
+                onClick={(e)=>{
+                    e.preventDefault();
                     setMenuOpen(false);
                     setVisible(false);
+                    setShow(true);
                 }}
                 >
                     <span>Contacto</span>

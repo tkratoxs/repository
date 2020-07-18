@@ -1,13 +1,14 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby";
+import React, {useState} from "react"
+import { useStaticQuery, graphql, Link } from "gatsby";
 import BackgroundImage from 'gatsby-background-image';
 import Image from "gatsby-image";
 import styled from '@emotion/styled';
-import {Container, Row, Col, Button} from 'react-bootstrap';
+import {Container, Row, Col, Button, Modal} from 'react-bootstrap';
 import Carousel from "react-multi-carousel";
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ContactoForm from "../components/contactoForm"
 
 import "react-multi-carousel/lib/styles.css";
 
@@ -82,6 +83,11 @@ const IndexPage = () => {
       }
     }`);
 
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
   return(
     <Layout>
       <SEO title="Home" />
@@ -134,9 +140,17 @@ const IndexPage = () => {
             <p
             className="font-weight-bold"
             >Donativo Voluntario</p>
-            <Button>
+            <Link
+              to="/"
+              onClick={
+                (e) => {
+                  e.preventDefault();
+                  handleShow();
+                }
+              }
+            >
               Registrarse
-            </Button>
+            </Link>
           </Col>
         </Row>
         <hr/>
@@ -201,6 +215,22 @@ const IndexPage = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal 
+      className="modal-contacto"
+      show={show}
+      onHide={handleClose}
+      size="xl"
+      >
+        <Modal.Header closeButton>
+          Clases en línea por Zoom
+        </Modal.Header>
+        <Modal.Body>
+          <ContactoForm
+            opcionSelect="claseszoom"
+          />
+        </Modal.Body>
+      </Modal>
 
     </Layout>
   );

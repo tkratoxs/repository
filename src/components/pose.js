@@ -1,33 +1,37 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
-import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
+import styled from "@emotion/styled";
 
-const PoseComponent = ({pose}) => {
-    const imgs = useStaticQuery(graphql`
-    {
-        img1: file(relativePath: {eq: "poses/ardhaMatsyendrasana.png"}) {
-        sharp: childImageSharp {
-            fluid(quality:90, maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-            }
-        }
-        }
-    }`);
+const PoseLink = styled.a`
+    color:#000;
+    cursor:pointer;
+    &:hover{
+        color:#000;
+        text-decoration:none;
+    }
+`;
+
+const PoseComponent = ({pose, index, setPoseId}) => {
 
     return ( 
         <Col
         md={12}
         xs={3}
         >
-            <Image
-              fluid={imgs.img1.sharp.fluid}
-              alt={pose.nombre}
-              className="mt-4 mb-4"
-            />
-            <p>
-                {pose.nombre}
-            </p>
+            <PoseLink
+            href="#"
+            onClick={e=>{e.preventDefault(); setPoseId(index);}}
+            >
+                <Image
+                fluid={pose.imagen.fluid}
+                alt={pose.nombreSanscrito}
+                className="mt-4 mb-4"
+                />
+                <p>
+                    {pose.nombreSanscrito}
+                </p>
+            </PoseLink>
         </Col>
     );
 }

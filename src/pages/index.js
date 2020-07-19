@@ -11,6 +11,7 @@ import SEO from "../components/seo"
 import ContactoForm from "../components/contactoForm"
 
 import "react-multi-carousel/lib/styles.css";
+import "../components/scss/index.scss";
 
 const ImageBackground = styled(BackgroundImage)`
     height:600px;
@@ -41,6 +42,16 @@ const responsive = {
     items: 1
   }
 };
+
+const LinkButton = styled(Link)`
+  background-color:#ffe300;
+  color:#000;
+  padding:10px 30px;
+  &:hover{
+    color:#000;
+    text-decoration:none;
+  }
+`;
 
 const IndexPage = () => {
 
@@ -141,7 +152,7 @@ const IndexPage = () => {
             <p
             className="font-weight-bold"
             >Donativo Voluntario</p>
-            <Link
+            <LinkButton
               to="/"
               onClick={
                 (e) => {
@@ -152,7 +163,7 @@ const IndexPage = () => {
               }
             >
               Registrarse
-            </Link>
+            </LinkButton>
           </Col>
         </Row>
         <hr/>
@@ -201,22 +212,9 @@ const IndexPage = () => {
                   alt="Yoga Restaurativo"
                 />
                 <h3>Restaurativo</h3>
-              </div>
-              <div
-              className="p-4"
-              onClick={
-                () => {
-                  setOpcionSelect('clasespar');
-                  handleShow();
-                }
-              }
-              role="button"
-              >
-                <Image
-                  fluid={imgs.imgCar1.sharp.fluid}
-                  alt="Yoga Avanzados"
-                />
-                <h3>Avanzados</h3>
+                <p>
+                  Ideal para las personas que una práctica de yoga usual presente un reto considerable. También para los días con poca energía, cuando se tiene alguna lesión o alguna condición particular de salud.
+                </p>
               </div>
               <div
               className="p-4"
@@ -233,6 +231,28 @@ const IndexPage = () => {
                   alt="Yoga Principiantes"
                 />
                 <h3>Principiantes</h3>
+                <p>
+                  Clase diseñada para quienes han tenido poca o nula experiencia con el yoga, se revisa con gran detalle cada movimiento y se hace mucho énfasis en la alineación.
+                </p>
+              </div>
+              <div
+              className="p-4"
+              onClick={
+                () => {
+                  setOpcionSelect('clasespar');
+                  handleShow();
+                }
+              }
+              role="button"
+              >
+                <Image
+                  fluid={imgs.imgCar1.sharp.fluid}
+                  alt="Yoga Avanzados"
+                />
+                <h3>Intermedios / Avanzados</h3>
+                <p>
+                  Esta clase es para quienes tienen un entendimiento sólido de las posturas básicas y hay curiosidad de hacer un estudio más profundo en la práctica.
+                </p>
               </div>
             </Carousel>
           </Col>

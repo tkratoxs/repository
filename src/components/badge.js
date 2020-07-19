@@ -5,6 +5,9 @@ import styled from '@emotion/styled';
 const BadgeStyled = styled(Badge)`
     cursor:pointer;
     margin-right:5px;
+    &:first-letter{
+        text-transform:uppercase;
+    }
 `;
 
 const BadgeComponent = ({text, type}) => {

@@ -28,16 +28,16 @@ const Menu = ({menuOpen,setMenuOpen, fixed, setVisible, setShow}) => {
                     <span>Sobre mí</span>
                 </a>
                 <a
+                href="/" 
+                data-link-alt="Vídeos"
+                >
+                    <span>Clases</span>
+                </a>
+                <a
                 href="/poses" 
                 data-link-alt="Posturas"
                 >
                     <span>Posturas</span>
-                </a>
-                <a
-                href="/" 
-                data-link-alt="Vídeos"
-                >
-                    <span>Vídeos</span>
                 </a>
                 <Link
                 to="/contacto" 

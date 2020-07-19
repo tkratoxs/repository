@@ -15,16 +15,16 @@ const CustomRow = styled(Row)`
     }
 `;
 
-const PosesComponent = ({filtros}) => {
-    //const proyectosWP = useProjectsGrid();
-    const posesArray = [{slug:"ardha-matsyendrasana", nombre:"Ardha Matsyendrasana"},{slug:"ardha-matsyendrasana2", nombre:"Ardha Matsyendrasana"},{slug:"ardha-matsyendrasana3", nombre:"Ardha Matsyendrasana"},{slug:"ardha-matsyendrasana4", nombre:"Ardha Matsyendrasana"},{slug:"ardha-matsyendrasana5", nombre:"Ardha Matsyendrasana"}];
+const PosesComponent = ({posesArray, setPoseId}) => {
 
     return ( 
         <CustomRow>
-            {posesArray.map(pose => (
+            {posesArray.map((pose, index) => (
                 <PoseComponent
-                key={pose.slug}
-                pose={pose}
+                    key={pose.slug}
+                    pose={pose}
+                    index={index}
+                    setPoseId={setPoseId}
                 />
             ))}
         </CustomRow>

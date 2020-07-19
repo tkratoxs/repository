@@ -37,7 +37,26 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        // You can find your read-only API token under the Settings > API tokens
+        // section of your administrative area:
+        apiToken: `0f6449ea50e83eac996e3a95fa71f0`,
+  
+        // The project environment to read from. Defaults to the primary environment:
+        environment: `master`,
+  
+        // If you are working on development/staging environment, you might want to
+        // preview the latest version of records instead of the published one:
+        previewMode: false,
+  
+        // Disable automatic reloading of content when some change occurs on DatoCMS:
+        disableLiveReload: false,
+  
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

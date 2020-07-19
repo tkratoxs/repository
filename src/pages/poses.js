@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
 
 import BadgeComponent from "../components/badge"
@@ -7,11 +7,15 @@ import PoseFullComponent from "../components/poseFullComponent"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const filtros=[];
-const poseId = 12;
+import usePosturas from "../hooks/use-posturas";
 
 const PosesPage = () => {
 
+  const filtros=[];
+  const [poseId, setPoseId] = useState(0);
+
+  const posesArray = usePosturas();
+  console.log(posesArray);
   return(
     <Layout>
       <SEO title="Home" />
@@ -55,12 +59,13 @@ const PosesPage = () => {
           md={3}
           >
             <PosesComponent
-              filtros={filtros}
+              posesArray={posesArray}
+              setPoseId={setPoseId}
             />
           </Col>
           <Col>
             <PoseFullComponent
-              poseId={poseId}
+              pose={posesArray[poseId]}
             />
           </Col>
         </Row>

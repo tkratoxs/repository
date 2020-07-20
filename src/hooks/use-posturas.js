@@ -25,7 +25,7 @@ const usePosturas = () => {
         slug: postura.slug,
         nombreSanscrito: postura.nombreSanscrito,
         nombreEspanol: postura.nombreEspanol,
-        familia: postura.familia.split(","),
+        familia: postura.familia,
         imagen: postura.imagen,
         descripcion: postura.descripcion
     }));

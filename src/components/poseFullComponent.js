@@ -1,9 +1,8 @@
 import React from 'react';
-import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
-import BadgeComponent from './badge';
+import {Button} from "react-bootstrap";
 
-const PoseFullComponent = ({pose}) => {
+const PoseFullComponent = ({pose, setFilters}) => {
     return (
         <> 
             <h1>
@@ -21,12 +20,15 @@ const PoseFullComponent = ({pose}) => {
             <p>
                 {pose.descripcion}
             </p>
-            {pose.familia.map((familia) => 
-                <BadgeComponent
+            {pose.familia.split(",").map((familia) => 
+                <Button
                     key={familia}
-                    text={familia}
-                    type="success"
-                />
+                    className="button-badge"
+                    variant="success"
+                    onClick={()=>setFilters([familia])}
+                >
+                    {familia}
+                </Button>
             )}
         </>
     );

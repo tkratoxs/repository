@@ -1,17 +1,33 @@
 import React, {useState, useEffect} from "react"
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import styled from "@emotion/styled";
+
 
 import PosesComponent from "../components/poses"
 import PoseFullComponent from "../components/poseFullComponent"
+import PoseComponent from '../components/pose';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import usePosturas from "../hooks/use-posturas";
 
+
+const CustomRow = styled(Row)`
+    @media screen and (min-width: 768px) {
+        overflow-y:auto;
+        max-height:100vh;
+    }
+    @media screen and (max-width: 767px) {
+        overflow-x:auto;
+        -webkit-flex-wrap:nowrap;
+        flex-wrap:nowrap;
+    }
+`;
+
 const PosesPage = () => {
 
   const posesArray = usePosturas();
-  const [poseId, setPoseId] = useState(0);
+  const [poseId, setPoseId] = useState(null);
   const [filterInput, setFilterInput] = useState("");
   const [filters, setFilters] = useState([]);
   const [posesFiltered, setPosesFiltered] = useState(posesArray);
@@ -27,17 +43,19 @@ const PosesPage = () => {
     document.querySelector("#filterInput").value="";
   }
 
+  const normalizar = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
   useEffect(() => {
     let posturasFiltradas = posesArray;
     filters.forEach(filtro => {
       posturasFiltradas = posturasFiltradas.filter(elm => 
-        elm.nombreSanscrito.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(filtro.toLowerCase()) !== -1
+        normalizar(elm.nombreSanscrito).indexOf(normalizar(filtro)) !== -1
         ||
-        elm.nombreEspanol.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(filtro.toLowerCase()) !== -1
+        normalizar(elm.nombreEspanol).indexOf(normalizar(filtro)) !== -1
         ||
-        elm.familia.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(filtro.toLowerCase()) !== -1
+        normalizar(elm.familia).indexOf(normalizar(filtro)) !== -1
         ||
-        elm.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(filtro.toLowerCase()) !== -1
+        normalizar(elm.descripcion).indexOf(normalizar(filtro)) !== -1
       );
     });
     setPosesFiltered(posturasFiltradas);
@@ -56,26 +74,37 @@ const PosesPage = () => {
             <h1>Asanas (Posturas)</h1>
           </Col>
         </Row>
-        <Row>
+        <Row
+        className="mb-4"
+        >
           <Col>
-            <Form inline>
+            <Form>
               <Row>
-                <Col>
-                <Form.Control
-                  className="mb-2 mr-sm-2"
-                  id="filterInput"
-                  placeholder="Buscar"
-                  name="filterInput"
-                  onChange={handleChange}
-                  onKeyDown={e => {if (e.key === 'Enter'||e.key === ' '){ 
-                              e.preventDefault();
-                              applyFilter();}
-                            }}
-                />
-                <Button type="submit" className="mb-2"
-                onClick={e =>{e.preventDefault(); applyFilter();}}>
-                  Filtrar
-                </Button>
+                <Col
+                md={4}
+                sm={5}
+                xs={12}
+                >
+                  <Form.Control
+                    className="mb-2 mr-sm-2"
+                    id="filterInput"
+                    placeholder="Buscar"
+                    name="filterInput"
+                    onChange={handleChange}
+                    onKeyDown={e => {if (e.key === 'Enter'||e.key === ' '){ 
+                                e.preventDefault();
+                                applyFilter();}
+                              }}
+                  />
+                </Col>
+                <Col
+                md={3}
+                sm={4}
+                xs={12}>
+                  <Button type="submit" className="mb-2" block
+                  onClick={e =>{e.preventDefault(); applyFilter();}}>
+                    Filtrar
+                  </Button>
                 </Col>
               </Row>
             </Form>
@@ -95,26 +124,53 @@ const PosesPage = () => {
           </Col>
         </Row>
         <Row>
-          <Col
-          md={3}
-          >
+          {poseId!==null?
+            <Col md={3}>
+              {posesFiltered.length===0?
+                <p>
+                  No hay resultados
+                </p>
+                :
+                <CustomRow>
+                  <PosesComponent
+                    posesArray={posesFiltered}
+                    setPoseId={setPoseId}
+                    wide={12}
+                  />
+                </CustomRow>
+              }
+            </Col>
+          :
+            <>
             {posesFiltered.length===0?
-              <p>
-                No hay resultados
-              </p>
-            :
-              <PosesComponent
-                posesArray={posesFiltered}
+              <Col>
+                <p>
+                  No hay resultados
+                </p>
+              </Col>
+              :
+              <>
+                {posesFiltered.map((pose) => (
+                  <PoseComponent
+                      key={pose.slug}
+                      pose={pose}
+                      setPoseId={setPoseId}
+                      wide={3}
+                  />
+                ))}
+              </>
+            }
+            </>
+          }
+          {poseId!==null?
+            <Col>
+              <PoseFullComponent
+                pose={posesArray[poseId]}
+                setFilters={setFilters}
                 setPoseId={setPoseId}
               />
-            }
-          </Col>
-          <Col>
-            <PoseFullComponent
-              pose={posesArray[poseId]}
-              setFilters={setFilters}
-            />
-          </Col>
+            </Col>
+          :null}
         </Row>
       
       </Container>

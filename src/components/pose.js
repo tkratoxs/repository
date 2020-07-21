@@ -11,28 +11,41 @@ const PoseLink = styled.a`
         text-decoration:none;
     }
 `;
+const Pdescr = styled.p`
+    font-size:14px;
+    text-align:center;
+    margin-bottom:0;
+`;
+const ColPose = styled(Col)`
+    @media screen and (max-width: 767px) {
+        padding-left:5px;
+        padding-right:5px;
+        word-break:break-word;
+        margin-bottom:1.5rem;
+    }
+`;
 
-const PoseComponent = ({pose, index, setPoseId}) => {
+const PoseComponent = ({pose, setPoseId,wide}) => {
 
     return ( 
-        <Col
-        md={12}
-        xs={3}
+        <ColPose
+        md={wide}
+        xs={4}
         >
             <PoseLink
             href="#"
-            onClick={e=>{e.preventDefault(); setPoseId(index);}}
+            onClick={e=>{e.preventDefault(); setPoseId(pose.index);}}
             >
                 <Image
                 fluid={pose.imagen.fluid}
                 alt={pose.nombreSanscrito}
-                className="mt-4 mb-4"
+                className="mt-4 mb-1"
                 />
-                <p>
+                <Pdescr>
                     {pose.nombreSanscrito}
-                </p>
+                </Pdescr>
             </PoseLink>
-        </Col>
+        </ColPose>
     );
 }
  

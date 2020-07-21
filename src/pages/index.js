@@ -197,62 +197,68 @@ const IndexPage = () => {
               dotListClass="custom-dot-list-style"
               itemClass="carousel-item-padding-40-px"
             >
-              <div
-              className="p-4"
-              onClick={
-                () => {
-                  setOpcionSelect('clasesparres');
-                  handleShow();
+              <div className="p-4">
+                <a
+                href="/"
+                onClick={
+                  e => {
+                    e.preventDefault();
+                    setOpcionSelect('clasesparres');
+                    handleShow();
+                  }
                 }
-              }
-              role="button"
-              >
-                <Image
-                  fluid={imgs.imgCar3.sharp.fluid}
-                  alt="Yoga Restaurativo"
-                />
-                <h3>Restaurativo</h3>
-                <p>
-                  Ideal para las personas que una práctica de yoga usual presente un reto considerable. También para los días con poca energía, cuando se tiene alguna lesión o alguna condición particular de salud.
-                </p>
+                >
+                  <Image
+                    fluid={imgs.imgCar3.sharp.fluid}
+                    alt="Yoga Restaurativo"
+                  />
+                  <h3>Restaurativo</h3>
+                  <p>
+                    Ideal para las personas que una práctica de yoga usual presente un reto considerable. También para los días con poca energía, cuando se tiene alguna lesión o alguna condición particular de salud.
+                  </p>
+                </a>
               </div>
-              <div
-              className="p-4"
-              onClick={
-                () => {
-                  setOpcionSelect('clasespar');
-                  handleShow();
+              <div className="p-4">
+                <a
+                href="/"
+                onClick={
+                  e => {
+                    e.preventDefault();
+                    setOpcionSelect('clasespar');
+                    handleShow();
+                  }
                 }
-              }
-              role="button"
-              >
-                <Image
-                  fluid={imgs.imgCar2.sharp.fluid}
-                  alt="Yoga Principiantes"
-                />
-                <h3>Principiantes</h3>
-                <p>
-                  Clase diseñada para quienes han tenido poca o nula experiencia con el yoga, se revisa con gran detalle cada movimiento y se hace mucho énfasis en la alineación.
-                </p>
+                >
+                  <Image
+                    fluid={imgs.imgCar2.sharp.fluid}
+                    alt="Yoga Principiantes"
+                  />
+                  <h3>Principiantes</h3>
+                  <p>
+                    Clase diseñada para quienes han tenido poca o nula experiencia con el yoga, se revisa con gran detalle cada movimiento y se hace mucho énfasis en la alineación.
+                  </p>
+                </a>
               </div>
-              <div
-              className="p-4"
-              onClick={
-                () => {
-                  setOpcionSelect('clasespar');
-                  handleShow();
+              <div className="p-4">
+                <a
+                href="/"
+                onClick={
+                  e => {
+                    e.preventDefault();
+                    setOpcionSelect('clasespar');
+                    handleShow();
+                  }
                 }
-              }
-              role="button"
-              >
-                <Image
-                  fluid={imgs.imgCar1.sharp.fluid}
-                  alt="Yoga Avanzados"
-                />
-                <h3>Intermedios / Avanzados</h3>
-                <p>
-                  Esta clase es para quienes tienen un entendimiento sólido de las posturas básicas y hay curiosidad de hacer un estudio más profundo en la práctica.
-                </p>
+                >
+                  <Image
+                    fluid={imgs.imgCar1.sharp.fluid}
+                    alt="Yoga Avanzados"
+                  />
+                  <h3>Intermedios / Avanzados</h3>
+                  <p>
+                    Esta clase es para quienes tienen un entendimiento sólido de las posturas básicas y hay curiosidad de hacer un estudio más profundo en la práctica.
+                  </p>
+                </a>
               </div>
             </Carousel>
           </Col>

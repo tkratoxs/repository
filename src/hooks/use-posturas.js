@@ -21,16 +21,7 @@ const usePosturas = () => {
     }
     `);
 
-    const arreglo = data.allDatoCmsPostura.nodes.map(postura => ({
-        slug: postura.slug,
-        nombreSanscrito: postura.nombreSanscrito,
-        nombreEspanol: postura.nombreEspanol,
-        familia: postura.familia,
-        imagen: postura.imagen,
-        descripcion: postura.descripcion
-    }));
-
-    return arreglo.sort((a, b) => {
+    let arreglo = data.allDatoCmsPostura.nodes.sort((a, b) => {
         if (a.nombreSanscrito > b.nombreSanscrito) {
             return 1;
         }
@@ -40,6 +31,18 @@ const usePosturas = () => {
         // a must be equal to b
         return 0;
     });
+
+    arreglo = arreglo.map((postura,index) => ({
+        index: index,
+        slug: postura.slug,
+        nombreSanscrito: postura.nombreSanscrito,
+        nombreEspanol: postura.nombreEspanol,
+        familia: postura.familia,
+        imagen: postura.imagen,
+        descripcion: postura.descripcion
+    }));
+
+    return arreglo;
 }
  
 export default usePosturas;

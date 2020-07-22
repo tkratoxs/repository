@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import {Navbar} from 'react-bootstrap';
 import classNames from "classnames";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 import "./scss/header.scss";
 
@@ -36,8 +37,11 @@ const Header = ({ siteTitle, fixed, visible }) => {
           visible: visible
         })}
       >
-        <Navbar.Brand 
-          href="/"
+        <AniLink
+        fade
+        hex="#FCE202"
+        to="/" 
+        className="navbar-brand"
         >
           <Image
             fluid={imgs.imgHeader.sharp.fluid}
@@ -47,7 +51,7 @@ const Header = ({ siteTitle, fixed, visible }) => {
           <div className="halfCircle"></div>
           <h4 className="align-center">Gilberto Carrillo</h4>
           <h3>Yoga</h3>
-        </Navbar.Brand>
+        </AniLink>
       </Navbar>
   )
 }

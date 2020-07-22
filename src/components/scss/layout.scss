@@ -14,6 +14,23 @@ body{
         padding:0px 5px;
         text-transform:lowercase;
     }
+    footer{
+        background-color: #ffe300;
+        a{
+            color:#000;
+            font-weight: bold;
+            text-decoration: none;
+            &:hover{
+                text-decoration: none;
+                color:#000;
+            }
+        }
+    }
+    @media only screen and (max-width : 575px) {
+        &{
+            overflow-x: hidden;
+        }
+    }
 }
 .main-header{
     overflow: hidden;

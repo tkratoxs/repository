@@ -30,6 +30,9 @@ const AboutPage = () => {
         <Row>
           <Col
           sm={6}
+          data-sal="slide-left"
+          data-sal-delay="300"
+          data-sal-duration="500"
           >
             <Image
               fluid={imgs.img1.sharp.fluid}
@@ -40,6 +43,9 @@ const AboutPage = () => {
           <Col
           sm={6}
           className="text-center align-middle"
+          data-sal="slide-right"
+          data-sal-delay="300"
+          data-sal-duration="500"
           >
             <h3
             className="mt-4"

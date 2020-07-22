@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from "classnames";
 import { Link } from 'gatsby';
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 import "./scss/menuFullScreen.scss";
 
@@ -15,30 +16,38 @@ const Menu = ({menuOpen,setMenuOpen, fixed, setVisible, setShow}) => {
         >
             <div className="overlay-bg"></div>
             <div className="overlay-content">
-                <a
-                href="/" 
+                <AniLink
+                fade
+                hex="#FCE202"
+                to="/" 
                 data-link-alt="Inicio"
                 >
                     <span>Inicio</span>
-                </a>
-                <a 
-                href="/about" 
+                </AniLink>
+                <AniLink
+                fade
+                hex="#FCE202"
+                to="/about" 
                 data-link-alt="Sobre mí"
                 >
                     <span>Sobre mí</span>
-                </a>
-                <a
-                href="/" 
+                </AniLink>
+                <AniLink
+                fade
+                hex="#FCE202"
+                to="/" 
                 data-link-alt="Vídeos"
                 >
                     <span>Clases</span>
-                </a>
-                <a
-                href="/poses" 
+                </AniLink>
+                <AniLink
+                fade
+                hex="#FCE202"
+                to="/poses" 
                 data-link-alt="Posturas"
                 >
                     <span>Posturas</span>
-                </a>
+                </AniLink>
                 <Link
                 to="/contacto" 
                 data-link-alt="Contacto"

@@ -9,7 +9,7 @@ import React, {useState, useEffect} from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby";
 import classNames from "classnames";
-import {Modal} from "react-bootstrap";
+import {Modal, Row, Col, Container} from "react-bootstrap";
 
 import Header from "./header";
 import HamburgerMenu from "./hamburgerMenu";
@@ -43,10 +43,11 @@ const Layout = ({ children }) => {
   const onScroll = (e) => {
     setScrollTop(window.pageYOffset);
   }
-
+  
   useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-  },[]);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     //FIXED
@@ -91,6 +92,7 @@ const Layout = ({ children }) => {
         <HamburgerMenu
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          fixed={fixed}
         />
       </header>
       <div
@@ -103,8 +105,20 @@ const Layout = ({ children }) => {
           {children}
         </main>
       </div>
-      <footer>
-        © {new Date().getFullYear()}
+      <footer
+      className="p-2"
+      >
+        <Container>
+          <Row>
+            <Col className="text-center small">
+              <p>
+                Gilberto Carrillo - Yoga {new Date().getFullYear()}
+                <br/>
+                <a href="mailto:hola@yogagilberto.com">hola@yogagilberto.com</a>
+              </p>
+            </Col>
+          </Row>
+        </Container>
       </footer>
 
       <Modal 

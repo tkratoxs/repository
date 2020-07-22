@@ -53,6 +53,20 @@ const LinkButton = styled(Link)`
   }
 `;
 
+const DivMiddle = styled.div`
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:100%;
+  transform:translate(-50%,-50%);
+  @media only screen and (max-width : 575px) {
+    position:relative;
+    transform:none;
+    left:unset;
+    top:unset;
+  }
+`;
+
 const IndexPage = () => {
 
   const imgs = useStaticQuery(graphql`
@@ -119,11 +133,17 @@ const IndexPage = () => {
           >
             <h2
             className="mt-4 mb-4"
+            data-sal="zoom-in"
+            data-sal-delay="500"
+            data-sal-duration="1000"
             >
               "Tu cuerpo existe en el pasado y tu mente en el futuro. En yoga ellos están juntos en el presente."
             </h2>
             <h3
             className="mt-3 mb-4 font-italic"
+            data-sal="slide-down"
+            data-sal-delay="800"
+            data-sal-duration="500"
             >
               Yogacharya B.K.S. Iyengar
             </h3>
@@ -133,6 +153,9 @@ const IndexPage = () => {
         <Row>
           <Col
           sm={6}
+          data-sal="slide-left"
+          data-sal-delay="500"
+          data-sal-duration="1000"
           >
             <Image
               fluid={imgs.imgZoom.sharp.fluid}
@@ -143,27 +166,34 @@ const IndexPage = () => {
           <Col
           sm={6}
           className="text-center align-middle"
+          data-sal="zoom-in"
+          data-sal-delay="500"
+          data-sal-duration="1000"
           >
-            <p
-            className="mt-4"
-            >Estoy compartiendo clases en línea a través de Zoom.</p>
-            <p>Mantente seguro y en casa.</p>
-            <p>Mantente practicando!!</p>
-            <p
-            className="font-weight-bold"
-            >Donativo Voluntario</p>
-            <LinkButton
-              to="/"
-              onClick={
-                (e) => {
-                  e.preventDefault();
-                  setOpcionSelect('claseszoom');
-                  handleShow();
+            <DivMiddle>
+              <h2>Clases en vivo</h2>
+              <p className="mt-4 mb-4">
+                Lunes, miércoles y jueves de 19 a 20:15hrs<br/>
+                <strong>En estas clases puedo observarte y darte seguimiento.</strong>
+              </p>
+              <h4 className="mt-4">Donativo Voluntario</h4>
+              <p className="mb-4">
+                De acuerdo a tu situación económica actual.
+              </p> 
+              <br/>
+              <LinkButton
+                to="/"
+                onClick={
+                  (e) => {
+                    e.preventDefault();
+                    setOpcionSelect('claseszoom');
+                    handleShow();
+                  }
                 }
-              }
-            >
-              Registrarse
-            </LinkButton>
+              >
+                Registrarse
+              </LinkButton>
+            </DivMiddle>
           </Col>
         </Row>
         <hr/>
@@ -173,10 +203,16 @@ const IndexPage = () => {
           >
             <h2
             className="mt-4"
+            data-sal="zoom-out"
+            data-sal-delay="250"
+            data-sal-duration="1000"
             >
               Clases privadas
             </h2>
-            <h4>
+            <h4
+            data-sal="zoom-out"
+            data-sal-delay="500"
+            data-sal-duration="1000">
               En línea o presenciales
             </h4>
             <Carousel

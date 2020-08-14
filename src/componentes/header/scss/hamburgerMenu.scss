@@ -1,0 +1,124 @@
+$dark: #212121;
+$light: #efefef;
+$color: #b3e5fc;
+
+@mixin icon($height, $width) {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: $height;
+  width: $width;
+  top: 21px;
+  background-color: $dark;
+}
+
+@mixin icon-before($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+@mixin icon-after($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+.menu{
+    display: none;
+    position: fixed;
+    width: 46px;
+    height: 46px;
+    transition-duration: 0.5s;
+    right: 10px;
+    top:10px;
+    z-index:2;
+    border-radius:100%;
+    border-width:0;
+    background-color: transparent;
+    
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        outline: none;
+    }
+
+    .icon-left {
+        @include icon(3px, 10px);
+        left:13px;
+
+        &:before{
+            @include icon-before(3px, 10px, -8px);
+            left:0;
+        }
+
+        &:after{
+            @include icon-after(3px, 10px, 8px);
+            left:0;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .icon-right {
+        @include icon(3px, 10px);
+        right: 13px;
+
+        &:before{
+            @include icon-before(3px, 10px, -8px);
+            right:0;
+        }
+
+        &:after{
+            @include icon-after(3px, 10px, 8px);
+            right:0;
+        }
+    }
+
+    &.open {
+    .icon-left {
+        transition-duration: 0.5s;
+        background: transparent;
+        
+        &:before{
+        transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+        }
+
+        &:after{
+        transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+        }
+    }
+
+    .icon-right {
+        transition-duration: 0.5s;
+        background: transparent;  
+        
+        &:before{
+        transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+        }
+
+        &:after{
+        transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+        }
+    }
+    }
+    @media screen and (max-width: 767px) {
+        &{
+            display: block;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        &.fixed{
+            display: block;
+        }
+    }
+}

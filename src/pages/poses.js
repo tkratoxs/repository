@@ -6,8 +6,8 @@ import styled from "@emotion/styled";
 import PosesComponent from "../components/poses"
 import PoseFullComponent from "../components/poseFullComponent"
 import PoseComponent from '../components/pose';
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../componentes/Layout";
+import SEO from "../components/seo";
 
 import usePosturas from "../hooks/use-posturas";
 

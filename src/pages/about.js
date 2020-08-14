@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import {Container, Row, Col} from 'react-bootstrap';
 
-import Layout from "../components/layout"
+import Layout from "../componentes/Layout"
 import SEO from "../components/seo"
 
 

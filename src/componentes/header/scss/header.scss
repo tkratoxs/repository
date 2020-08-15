@@ -6,12 +6,28 @@
         .imgHeader{
             width:70px;
             margin: 0 auto;
-            z-index:1;
+            z-index:9;
+            @media screen and (max-width: 575px) {
+                &.open{
+                    position: fixed !important;
+                    top:13px;
+                    left:32px;
+                }
+            }
         }
         h4{
             font-family: Belleza;
             font-size: 1rem;
             margin:0;
+            opacity: 1;
+            transition:0.3s;
+            visibility: visible;
+        }
+        h3{
+            font-family: Beaujolais;
+            font-size: 1.75rem;
+            margin:0;
+            margin-top:-8px;
             opacity: 1;
             transition:0.3s;
             visibility: visible;
@@ -27,7 +43,7 @@
             width:60px;
             height:30px;
             position: absolute;
-            top:55px;
+            top:41px;
             left:36px;
             transform: scale(0);
             transform-origin: center bottom;

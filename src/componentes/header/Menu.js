@@ -7,7 +7,7 @@ import { useStaticQuery, graphql } from "gatsby";
 
 import "./scss/menu.scss";
 
-const Menu = ({menuOpen, setMenuOpen}) => {
+const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
     
     const imgs = useStaticQuery(graphql`
     {
@@ -57,14 +57,17 @@ const Menu = ({menuOpen, setMenuOpen}) => {
             >
                 Posturas
             </AniLink>
-            <AniLink
-            fade
-            hex="#FCE202"
-            to="/" 
+            <a
+            href="#" 
             className="nav-link"
+            onClick={e=>{
+                e.preventDefault();
+                setMenuOpen(false);
+                handleShow();
+            }}
             >
                 Contacto
-            </AniLink>
+            </a>
             <Nav.Link href="/">
                 <Image
                     fixed={imgs.imgFace.sharp.fixed}

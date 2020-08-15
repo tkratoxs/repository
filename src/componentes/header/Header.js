@@ -3,13 +3,14 @@ import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import {Navbar} from "react-bootstrap";
+import classNames from "classnames";
 
 import Menu from './Menu'
 import HamburgerMenu from './HamburgerMenu';
 
 import "./scss/header.scss";
 
-const Header = ({menuOpen, setMenuOpen}) => {
+const Header = ({menuOpen, setMenuOpen, handleShow}) => {
     
     const imgs = useStaticQuery(graphql`
     {
@@ -35,15 +36,20 @@ const Header = ({menuOpen, setMenuOpen}) => {
                     <Image
                         fluid={imgs.imgHeader.sharp.fluid}
                         alt="Logo"
-                        className="imgHeader"
+                        className={classNames({
+                            imgHeader:true,
+                            open: menuOpen
+                        })}
                     />
                     <div className="halfCircle"></div>
-                    <h4 className="align-center">Gilberto Carrillo</h4>
+                    <h4 className="text-center">Gilberto Carrillo</h4>
+                    <h3 className="text-center">Yoga</h3>
                 </AniLink>
                 
                 <Menu
                     menuOpen={menuOpen}
                     setMenuOpen={setMenuOpen}
+                    handleShow={handleShow}
                 />
 
                 <HamburgerMenu

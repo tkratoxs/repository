@@ -2,10 +2,49 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import {Container, Row, Col} from 'react-bootstrap';
+import styled from '@emotion/styled';
 
 import Layout from "../componentes/Layout"
 import SEO from "../components/seo"
 
+const CustomRow = styled(Row)`
+  margin-bottom:2rem;
+  .col-img{
+    width:55%;
+  }
+  .col-text{
+    z-index:2;
+    width:45%;
+    padding:0 4rem;
+  }
+  @media only screen and (max-width : 991px) {
+    .col-img{
+      width:50%;
+    }
+    .col-text{
+      width:50%;
+      padding:0 3rem;
+    }    
+  }
+  @media only screen and (max-width : 575px) {
+    .col-img{
+      width:100%;
+      z-index:2;
+    }
+    .col-text{
+      width:100%;
+      padding:0 3rem;
+    }    
+  }
+`;
+
+const ColImg = styled.div`
+  width:55%;
+`;
+const ColTxt = styled.div`
+  width:45%;
+  z-index:2;
+`;
 
 const AboutPage = () => {
 
@@ -24,26 +63,20 @@ const AboutPage = () => {
     <Layout>
       <SEO title="Home" />
 
-      <Container
-      className="mt-4 mb-4"
-      >
-        <Row>
-          <Col
-          sm={6}
-          data-sal="slide-left"
-          data-sal-delay="300"
-          data-sal-duration="500"
+        <CustomRow>
+          <div
+          className="col-img"
           >
             <Image
               fluid={imgs.img1.sharp.fluid}
               alt="Clases en línea"
               className="mt-4 mb-4"
+              fadeIn={true}
             />
-          </Col>
-          <Col
-          sm={6}
-          className="text-center align-middle"
-          data-sal="slide-right"
+          </div>
+          <div
+          className="col-text text-center align-middle"
+          data-sal="slide-left"
           data-sal-delay="300"
           data-sal-duration="500"
           >
@@ -55,9 +88,8 @@ const AboutPage = () => {
             <p>Cursé el programa de formación para profesores impartido por Chantal Gómez Jauffred y Paul King. Cuento con la certificación Iyengar, continuo estudiando, preparándome y practicando bajo las enseñanzas de este método.</p>
             <p>He estudiado directamente con la familia Iyengar en Pune, India y he tomado clases y talleres intensivos con profesores senior como Gloria Goldberg (EUA), Christian Pisano (Francia), David Meloni (Italia), Jawahar Banghera (India), Peter Scott (Australia), Usha Devi (Suiza), Alan Brown (Inglaterra), entre otros además de cursos de filosofía del yoga y sánscrito con el Dr. Roberto García.</p>
             <p>Para mí, el yoga es una vía para conectar con mi interior, una herramienta de transformación no solo a nivel físico sino a niveles más profundos. Trato de que mi enseñanza sea entusiasta, busco combinar el dinamismo y la frescura con la precisión y atención características del método Iyengar.</p>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </CustomRow>
 
     </Layout>
   );

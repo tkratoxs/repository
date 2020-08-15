@@ -5,9 +5,9 @@ import classNames from "classnames";
 const DivBG = styled.div`
     background-color:#ffe003;
     width:45%;
-    height:100%;
+    height:calc(100% - 48px);
     z-index:1;
-    position:fixed;
+    position:absolute;
     top:0;
     right:0;
     @media screen and (max-width: 991px) {
@@ -17,7 +17,14 @@ const DivBG = styled.div`
     @media screen and (max-width: 767px) {
         &.open{
             width:100%;
+            height:100%;
+            z-index:9;
         }
+    }
+    @media screen and (max-width: 575px) {
+        height:calc(100% - 66px);
+        /*width: 68px;
+        width:25%;*/
     }
 `;
 

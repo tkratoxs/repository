@@ -59,7 +59,7 @@ const PosesPage = () => {
       );
     });
     setPosesFiltered(posturasFiltradas);
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   return(

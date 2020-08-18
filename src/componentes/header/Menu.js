@@ -58,7 +58,7 @@ const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
                 Posturas
             </AniLink>
             <a
-            href="#" 
+            href="/" 
             className="nav-link"
             onClick={e=>{
                 e.preventDefault();

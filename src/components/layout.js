@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
       setVisible(false);
     }
     setPrevPos(scrollTop);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollTop]);
 
   return (

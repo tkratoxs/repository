@@ -2,7 +2,8 @@ import React from 'react';
 import Image from "gatsby-image";
 import {Button} from "react-bootstrap";
 import styled from "@emotion/styled";
-import PoseComponent from './pose';
+
+/*import PoseComponent from './pose';
 
 const CerrarLink = styled.a`
     font-weight:700;
@@ -12,7 +13,7 @@ const CerrarLink = styled.a`
     &:hover{
         color:#000;
     }
-`;
+`;*/
 const PoseDiv = styled.div`
     text-align:left;
 `;
@@ -25,14 +26,14 @@ const ImagePose = styled(Image)`
 `;
 
 const PoseFullComponent = ({pose, setFilters, setPoseId}) => {
-    
+    /*
     const CerrarLinkComponent = 
         <CerrarLink
         href="#"
         onClick={(e)=>{e.preventDefault();setPoseId(null);}}
         >
             Cerrar
-        </CerrarLink>;
+        </CerrarLink>;*/
 
     return (
         <PoseDiv> 

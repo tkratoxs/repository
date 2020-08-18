@@ -114,6 +114,7 @@ const ContactoForm = ({opcionSelect, handleClose}) => {
             ...formulario,
             "diasClase": selectedDays
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedDays]);
 
     const handleChange = e => {

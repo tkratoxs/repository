@@ -3,9 +3,10 @@ module.exports = {
     title: `Gilberto Carrillo - Yoga`,
     description: `Yoga para todos`,
     author: `@gatsbyjs`,
+    lang:`es`
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    //`gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

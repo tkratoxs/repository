@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react"
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import {Row, Button} from 'react-bootstrap';
 import styled from "@emotion/styled";
 
 
 import PosesComponent from "../components/poses"
 import PoseFullComponent from "../components/poseFullComponent"
-import PoseComponent from '../components/pose';
 import Layout from "../componentes/Layout";
 import SEO from "../components/seo";
 
@@ -54,20 +53,8 @@ const PosesPage = () => {
 
   const posesArray = usePosturas();
   const [poseId, setPoseId] = useState(0);
-  const [filterInput, setFilterInput] = useState("");
   const [filters, setFilters] = useState([]);
   const [posesFiltered, setPosesFiltered] = useState(posesArray);
-
-  const handleChange = () => {
-    setFilterInput(document.querySelector("#filterInput").value);
-  }
-
-  const applyFilter = () => {
-    if(!filters.includes(filterInput)){
-      setFilters([...filters, filterInput.normalize("NFD").replace(/[\u0300-\u036f]/g, "")]);
-    }
-    document.querySelector("#filterInput").value="";
-  }
 
   const normalizar = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
@@ -85,7 +72,7 @@ const PosesPage = () => {
       );
     });
     setPosesFiltered(posturasFiltradas);
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   return(

@@ -1,8 +1,8 @@
 import React, {useState} from "react"
-import { useStaticQuery, graphql, Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import BackgroundImage from 'gatsby-background-image';
 import styled from '@emotion/styled';
-import {Container, Row, Col, Modal} from 'react-bootstrap';
+import { Row, Col, Modal} from 'react-bootstrap';
 
 import SEO from "../components/seo"
 

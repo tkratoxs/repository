@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
-import {Container, Row, Col} from 'react-bootstrap';
+import {Row} from 'react-bootstrap';
 import styled from '@emotion/styled';
 
 import Layout from "../componentes/Layout"
@@ -38,13 +38,6 @@ const CustomRow = styled(Row)`
   }
 `;
 
-const ColImg = styled.div`
-  width:55%;
-`;
-const ColTxt = styled.div`
-  width:45%;
-  z-index:2;
-`;
 
 const AboutPage = () => {
 

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Modal} from "react-bootstrap";
+import { Helmet } from 'react-helmet';
 
 import ContactoForm from "../components/contactoForm"
 import Header from './header/Header';
@@ -17,6 +18,15 @@ const Layout = ({children}) => {
 
     return ( 
         <>
+            <Helmet
+                title="Gilberto Carrillo - Yoga"
+                meta={[
+                    { name: 'description', content: 'Sample' },
+                    { name: 'keywords', content: 'sample, something' },
+                ]}
+                >
+                    <html lang="es" />
+            </Helmet>
             <SideBar
                 menuOpen={menuOpen}
                 setMenuOpen={setMenuOpen}

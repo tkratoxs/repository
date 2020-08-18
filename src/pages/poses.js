@@ -23,11 +23,37 @@ const CustomRow = styled(Row)`
         flex-wrap:nowrap;
     }
 `;
+const DivPoses = styled.div`
+    display:flex;
+    flex-wrap:wrap-reverse;
+`;
+const ColPose = styled.div`
+    width: 55%;
+    padding:15px;
+    z-index:2;
+    @media screen and (max-width: 991px) {
+        width:50%;
+    }
+    @media screen and (max-width: 767px) {
+        width:100%;
+    }
+`;
+const ColPoses = styled.div`
+    width: 45%;
+    padding:15px;
+    z-index:2;
+    @media screen and (max-width: 991px) {
+        width:50%;
+    }
+    @media screen and (max-width: 767px) {
+        width:100%;
+    }
+`;
 
 const PosesPage = () => {
 
   const posesArray = usePosturas();
-  const [poseId, setPoseId] = useState(null);
+  const [poseId, setPoseId] = useState(0);
   const [filterInput, setFilterInput] = useState("");
   const [filters, setFilters] = useState([]);
   const [posesFiltered, setPosesFiltered] = useState(posesArray);
@@ -66,114 +92,44 @@ const PosesPage = () => {
     <Layout>
       <SEO title="Home" />
 
-      <Container
-      className="mt-4 mb-4"
-      >
-        <Row>
-          <Col>
-            <h1>Asanas (Posturas)</h1>
-          </Col>
-        </Row>
-        <Row
-        className="mb-4"
-        >
-          <Col>
-            <Form>
-              <Row>
-                <Col
-                md={4}
-                sm={5}
-                xs={12}
-                >
-                  <Form.Control
-                    className="mb-2 mr-sm-2"
-                    id="filterInput"
-                    placeholder="Buscar"
-                    name="filterInput"
-                    onChange={handleChange}
-                    onKeyDown={e => {if (e.key === 'Enter'||e.key === ' '){ 
-                                e.preventDefault();
-                                applyFilter();}
-                              }}
-                  />
-                </Col>
-                <Col
-                md={3}
-                sm={4}
-                xs={12}>
-                  <Button type="submit" className="mb-2" block
-                  onClick={e =>{e.preventDefault(); applyFilter();}}>
-                    Filtrar
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
-            {
-              filters.map((filtro)=>
-                <Button
-                  variant="warning"
-                  className="button-badge"
-                  key={filtro}
-                  onClick={()=>
-                    setFilters(filters.filter((filtroText)=>filtro!==filtroText))}
-                >
-                    {filtro} <strong>x</strong>
-                </Button>
-              )
-            }
-          </Col>
-        </Row>
-        <Row>
-          {poseId!==null?
-            <Col md={3}>
-              {posesFiltered.length===0?
-                <p>
-                  No hay resultados
-                </p>
-                :
-                <CustomRow>
-                  <PosesComponent
-                    posesArray={posesFiltered}
-                    setPoseId={setPoseId}
-                    wide={12}
-                  />
-                </CustomRow>
-              }
-            </Col>
-          :
-            <>
-            {posesFiltered.length===0?
-              <Col>
-                <p>
-                  No hay resultados
-                </p>
-              </Col>
-              :
-              <>
-                {posesFiltered.map((pose) => (
-                  <PoseComponent
-                      key={pose.slug}
-                      pose={pose}
-                      setPoseId={setPoseId}
-                      wide={3}
-                  />
-                ))}
-              </>
-            }
-            </>
-          }
-          {poseId!==null?
-            <Col>
-              <PoseFullComponent
+        <DivPoses>
+            <ColPose>
+                <PoseFullComponent
                 pose={posesArray[poseId]}
                 setFilters={setFilters}
                 setPoseId={setPoseId}
-              />
-            </Col>
-          :null}
-        </Row>
-      
-      </Container>
+                />
+            </ColPose>
+          
+            <ColPoses>
+                {
+                    filters.map((filtro)=>
+                        <Button
+                        variant="warning"
+                        className="button-badge"
+                        key={filtro}
+                        onClick={()=>
+                            setFilters(filters.filter((filtroText)=>filtro!==filtroText))}
+                        >
+                            {filtro} <strong>x</strong>
+                        </Button>
+                    )
+                }
+                {posesFiltered.length===0?
+                <p>
+                    No hay resultados
+                </p>
+                :
+                <CustomRow>
+                    <PosesComponent
+                    posesArray={posesFiltered}
+                    setPoseId={setPoseId}
+                    wide={4}
+                    />
+                </CustomRow>
+                }
+            </ColPoses>
+        </DivPoses>
 
     </Layout>
   );

@@ -44,10 +44,12 @@ body{
 .modal-contacto{
     padding:0;
     .modal-dialog{
-        max-width: 100%;
-        margin:0;
+        max-width: 60%;
+        margin:0 auto;
         padding: 15px;
         .modal-content{
+            background-color: #eee;
+            border-width: 0;
             .modal-header{
                 justify-content: center;
                 font-size: 1.5rem;
@@ -61,6 +63,15 @@ body{
                     top:15px;
                 }
             }
+        }
+        @media only screen and (max-width : 991px) {
+            max-width: 80%;
+        }
+        @media only screen and (max-width : 767px) {
+            max-width: 90%;
+        }
+        @media only screen and (max-width : 575px) {
+            max-width: 100%;
         }
     }
     &.show{

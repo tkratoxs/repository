@@ -25,6 +25,34 @@ const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
                 }
             }
         }
+        imgInst: file(relativePath: {eq: "icons/instagramIcon.png"}) {
+            sharp: childImageSharp {
+                fixed(width:16, height:16) {
+                    ...GatsbyImageSharpFixed
+                }
+            }
+        }
+        imgInstMob: file(relativePath: {eq: "icons/instagramIcon.png"}) {
+            sharp: childImageSharp {
+                fixed(width:32, height:32) {
+                    ...GatsbyImageSharpFixed
+                }
+            }
+        }
+        imgYoutube: file(relativePath: {eq: "icons/youtubeIcon.png"}) {
+            sharp: childImageSharp {
+                fixed(width:16, height:16) {
+                    ...GatsbyImageSharpFixed
+                }
+            }
+        }
+        imgYoutubeMob: file(relativePath: {eq: "icons/youtubeIcon.png"}) {
+            sharp: childImageSharp {
+                fixed(width:32, height:32) {
+                    ...GatsbyImageSharpFixed
+                }
+            }
+        }
     }`);
     return ( 
 
@@ -68,18 +96,44 @@ const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
             >
                 Contacto
             </a>
-            <Nav.Link href="/">
-                <Image
-                    fixed={imgs.imgFace.sharp.fixed}
-                    alt="Logo"
-                    className="imgHeader d-none d-md-block"
-                />
-                <Image
-                    fixed={imgs.imgFaceMob.sharp.fixed}
-                    alt="Logo"
-                    className="imgHeader d-md-none"
-                />
-            </Nav.Link>
+            <div className="link-social">
+                <a href="https://www.instagram.com/gilbertoyogai/" target="_blank">
+                    <Image
+                        fixed={imgs.imgInst.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-none d-md-block"
+                    />
+                    <Image
+                        fixed={imgs.imgInstMob.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-md-none"
+                    />
+                </a>
+                <a href="https://www.facebook.com/gilbertoyogai" target="_blank">
+                    <Image
+                        fixed={imgs.imgFace.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-none d-md-block"
+                    />
+                    <Image
+                        fixed={imgs.imgFaceMob.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-md-none"
+                    />
+                </a>
+                <a href="/">
+                    <Image
+                        fixed={imgs.imgYoutube.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-none d-md-block"
+                    />
+                    <Image
+                        fixed={imgs.imgYoutubeMob.sharp.fixed}
+                        alt="Logo"
+                        className="imgHeader d-md-none"
+                    />
+                </a>
+            </div>
         </Nav>
 
     );

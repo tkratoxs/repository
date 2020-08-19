@@ -23,8 +23,7 @@ const DivBG = styled.div`
     }
     @media screen and (max-width: 575px) {
         height:calc(100% - 66px);
-        /*width: 68px;
-        width:25%;*/
+        width: 68px;
     }
 `;
 

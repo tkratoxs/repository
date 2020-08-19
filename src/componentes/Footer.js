@@ -36,10 +36,10 @@ const Footer = () => {
         <footer>  
             <FooterDiv>
                 <Col sm={6}>
-                    <p>Gilberto Carrillo - Yoga 2020</p>
+                    <p>Gilberto Carrillo - Yoga {(new Date).getFullYear()}</p>
                 </Col>
                 <Col sm={6}>
-                    <p><a href="mailto:hola@yogagil.com">hola@yogagil.com</a></p>
+                    <p><a href="mailto:hola@yogagil.com">contacto@gilbertoyoga.com</a></p>
                 </Col>
             </FooterDiv>
         </footer>

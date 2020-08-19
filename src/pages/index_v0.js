@@ -71,7 +71,7 @@ const IndexPage = () => {
 
   const imgs = useStaticQuery(graphql`
     {
-      img1: file(relativePath: {eq: "poses/parvrittaUpavistaKonasana.png"}) {
+      img1: file(relativePath: {eq: "poses/parvrittaUpavistaKonasana_c.png"}) {
         sharp: childImageSharp {
           fluid(quality:90, maxWidth: 1920) {
             ...GatsbyImageSharpFluid_withWebp

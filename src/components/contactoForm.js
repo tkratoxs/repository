@@ -8,7 +8,7 @@ import axios from 'axios';
 import 'react-day-picker/lib/style.css';
 
 const FormControl = styled(Form.Control)`
-    background-color:#FFF;
+    background-color:#eee;
     color:#000;
     border-width:0;
     border-radius:0;
@@ -20,7 +20,7 @@ const FormControl = styled(Form.Control)`
         color:#000;
     }
     &:focus{
-        background-color:#FFF;
+        background-color:#eee;
         color:#000;
         outline:none !important;
         outline-offset: none !important;
@@ -35,7 +35,7 @@ const FormControl = styled(Form.Control)`
     }
 `;
 const FormControlTextArea = styled(Form.Control)`
-    background-color:#FFF;
+    background-color:#eee;
     color:#000;
     border-radius:0;
     border-width:0;
@@ -49,7 +49,7 @@ const FormControlTextArea = styled(Form.Control)`
         color:#000;
     }
     &:focus{
-        background-color:#FFF;
+        background-color:#eee;
         color:#000;
         outline:none !important;
         outline-offset: none !important;
@@ -75,6 +75,7 @@ const Boton = styled(Button)`
         padding:5px 30px;
         border-width:0;
         text-align:center;
+        width:100%;
     }
 `;
 

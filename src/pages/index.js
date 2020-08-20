@@ -59,6 +59,7 @@ const Banner = styled.div`
       top:unset;
       left:unset;
       transform:none;
+      overflow:hidden;
       h2{
         text-align:center;
       }
@@ -122,17 +123,20 @@ const IndexPage = () => {
       
         <div 
         className="quote-container"
-        data-sal="slide-left"
-        data-sal-delay="300"
-        data-sal-duration="1000"
         >
           <h2
             className="mt-4 mb-4"
+            data-sal="slide-left"
+            data-sal-duration="2000"
+            data-sal-delay="2000"
           >
               "Tu cuerpo existe en el pasado y tu mente en el futuro. En yoga ellos están juntos en el presente."
           </h2>
           <h3
             className="mt-3 mb-4"
+            data-sal="slide-left"
+            data-sal-duration="2000"
+            data-sal-delay="2000"
           >
             Yogacharya B.K.S. Iyengar
           </h3>

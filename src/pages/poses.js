@@ -80,7 +80,9 @@ const PosesPage = () => {
       <SEO title="Home" />
 
         <DivPoses>
-            <ColPose>
+            <ColPose
+            data-sal="fade"
+            data-sal-duration="2000">
                 <PoseFullComponent
                 pose={posesArray[poseId]}
                 setFilters={setFilters}
@@ -107,7 +109,9 @@ const PosesPage = () => {
                     No hay resultados
                 </p>
                 :
-                <CustomRow>
+                <CustomRow
+                data-sal="fade"
+                data-sal-duration="1000">
                     <PosesComponent
                     posesArray={posesFiltered}
                     setPoseId={setPoseId}

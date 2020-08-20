@@ -5,11 +5,21 @@ import classNames from "classnames";
 const DivBG = styled.div`
     background-color:#ffe003;
     width:45%;
-    height:calc(100% - 48px);
     z-index:1;
     position:absolute;
+    height:calc(100% - 48px);
     top:0;
-    right:0;
+    animation-name: loadSideBar;
+    animation-duration: 1s;
+    animation-fill-mode:forwards;
+    @keyframes loadSideBar {
+        from {
+            right:-45%;
+        }
+        to {
+            right:0;
+        }
+    }
     @media screen and (max-width: 991px) {
         width:50%;
         transition:0.35s;

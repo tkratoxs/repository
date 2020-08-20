@@ -97,7 +97,7 @@ const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
                 Contacto
             </a>
             <div className="link-social">
-                <a href="https://www.instagram.com/gilbertoyogai/" target="_blank">
+                <a href="https://www.instagram.com/gilbertoyogai/" target="_blank" rel="noreferrer">
                     <Image
                         fixed={imgs.imgInst.sharp.fixed}
                         alt="Logo"
@@ -109,7 +109,7 @@ const Menu = ({menuOpen, setMenuOpen, handleShow}) => {
                         className="imgHeader d-md-none"
                     />
                 </a>
-                <a href="https://www.facebook.com/gilbertoyogai" target="_blank">
+                <a href="https://www.facebook.com/gilbertoyogai" target="_blank" rel="noreferrer">
                     <Image
                         fixed={imgs.imgFace.sharp.fixed}
                         alt="Logo"

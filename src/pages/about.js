@@ -70,8 +70,7 @@ const AboutPage = () => {
           <div
           className="col-text text-center align-middle"
           data-sal="slide-left"
-          data-sal-delay="300"
-          data-sal-duration="500"
+          data-sal-duration="2000"
           >
             <h3
             className="mt-4"

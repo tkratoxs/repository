@@ -36,7 +36,7 @@ const Footer = () => {
         <footer>  
             <FooterDiv>
                 <Col sm={6}>
-                    <p>Gilberto Carrillo - Yoga {(new Date).getFullYear()}</p>
+                    <p>Gilberto Carrillo - Yoga {(new Date()).getFullYear()}</p>
                 </Col>
                 <Col sm={6}>
                     <p><a href="mailto:hola@yogagil.com">contacto@gilbertoyoga.com</a></p>

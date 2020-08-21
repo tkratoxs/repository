@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Gilberto Carrillo - Yoga`,
-    description: `Yoga para todos`,
-    author: `@gatsbyjs`,
-    lang:`es`
+    title: `Gilberto Carrillo - Yoga Iyengar`,
+    description: `Clases en línea y presenciales de Yoga Iyengar para todos los niveles con el maestro certificado Gilberto Carrillo.`,
+    author: `@gilbertoyogai`,
+    lang:`es`,
+    keywords:`yoga,iyengar,mexico,gilberto,carrillo,hatha,clases,props`
   },
   plugins: [
     //`gatsby-plugin-react-helmet`,
@@ -25,7 +26,7 @@ module.exports = {
         background_color: `#BBBBB5`,
         theme_color: `#BBBBB5`,
         display: `minimal-ui`,
-        icon: `src/images/GIL_HZT1.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sass`,

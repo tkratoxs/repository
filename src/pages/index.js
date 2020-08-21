@@ -4,12 +4,9 @@ import BackgroundImage from 'gatsby-background-image';
 import styled from '@emotion/styled';
 import { Row, Col, Modal} from 'react-bootstrap';
 
-import SEO from "../components/seo"
+import SEO from "../componentes/seo"
 
-import "react-multi-carousel/lib/styles.css";
-import "../components/scss/index.scss";
-
-import ContactoForm from "../components/contactoForm"
+import ContactoForm from "../componentes/contactoForm"
 import Layout from "../componentes/Layout";
 import Clase from "../componentes/Clase";
 
@@ -119,6 +116,7 @@ const IndexPage = () => {
           fluid={imgs.img1.sharp.fluid}
           alt="Parivrtta Upavista Konasana"
           fadeIn="soft"
+          title="Postura de yoga"
         />
       
         <div 
@@ -152,7 +150,7 @@ const IndexPage = () => {
         data-sal-duration="1000"
         >
           <Clase
-            titulo="clases online"
+            titulo="clases en linea"
             txt1="Lunes, miércoles y jueves de 19 a 20:15hrs"
             txt2="En estas clases puedo observarte y darte seguimiento."
             txt3="Donativo Voluntario"

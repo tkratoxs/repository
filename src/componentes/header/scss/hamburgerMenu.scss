@@ -31,94 +31,96 @@ $color: #b3e5fc;
   top: $top;
 }
 
-.menu{
-    display: none;
-    position: fixed;
-    width: 46px;
-    height: 46px;
-    transition-duration: 0.5s;
-    right: 10px;
-    top:10px;
-    z-index:9;
-    border-radius:100%;
-    border-width:0;
-    background-color: transparent;
-    
-    &:hover,
-    &:focus {
-        cursor: pointer;
-        outline: none;
-    }
-
-    .icon-left {
-        @include icon(3px, 10px);
-        left:13px;
-
-        &:before{
-            @include icon-before(3px, 10px, -8px);
-            left:0;
-        }
-
-        &:after{
-            @include icon-after(3px, 10px, 8px);
-            left:0;
-        }
-
-        &:hover{
+.navbar{
+    .menu{
+        display: none;
+        position: fixed;
+        width: 46px;
+        height: 46px;
+        transition-duration: 0.5s;
+        right: 10px;
+        top:10px;
+        z-index:9;
+        border-radius:100%;
+        border-width:0;
+        background-color: transparent;
+        
+        &:hover,
+        &:focus {
             cursor: pointer;
-        }
-    }
-
-    .icon-right {
-        @include icon(3px, 10px);
-        right: 13px;
-
-        &:before{
-            @include icon-before(3px, 10px, -8px);
-            right:0;
+            outline: none;
         }
 
-        &:after{
-            @include icon-after(3px, 10px, 8px);
-            right:0;
-        }
-    }
+        .icon-left {
+            @include icon(3px, 10px);
+            left:13px;
 
-    &.open {
-    .icon-left {
-        transition-duration: 0.5s;
-        background: transparent;
-        
-        &:before{
-        transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
-        }
+            &:before{
+                @include icon-before(3px, 10px, -8px);
+                left:0;
+            }
 
-        &:after{
-        transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
-        }
-    }
+            &:after{
+                @include icon-after(3px, 10px, 8px);
+                left:0;
+            }
 
-    .icon-right {
-        transition-duration: 0.5s;
-        background: transparent;  
-        
-        &:before{
-        transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+            &:hover{
+                cursor: pointer;
+            }
         }
 
-        &:after{
-        transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+        .icon-right {
+            @include icon(3px, 10px);
+            right: 13px;
+
+            &:before{
+                @include icon-before(3px, 10px, -8px);
+                right:0;
+            }
+
+            &:after{
+                @include icon-after(3px, 10px, 8px);
+                right:0;
+            }
         }
-    }
-    }
-    @media screen and (max-width: 767px) {
-        &{
-            display: block;
+
+        &.open {
+        .icon-left {
+            transition-duration: 0.5s;
+            background: transparent;
+            
+            &:before{
+            transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+            }
+
+            &:after{
+            transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+            }
         }
-    }
-    @media screen and (min-width: 768px) {
-        &.fixed{
-            display: block;
+
+        .icon-right {
+            transition-duration: 0.5s;
+            background: transparent;  
+            
+            &:before{
+            transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+            }
+
+            &:after{
+            transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+            }
+        }
+        }
+        @media screen and (max-width: 767px) {
+            &{
+                display: block;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            &.fixed{
+                display: block;
+            }
         }
     }
 }

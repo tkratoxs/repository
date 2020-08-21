@@ -43,6 +43,7 @@ const Clase = ({titulo, txt1, txt2, txt3, imagen, handleShow, opcionModal, setOp
             <ImagenClase
               fluid={imagen.sharp.fluid}
               alt={titulo}
+              title={titulo}
               className="mt-4 mb-4"
             />
 

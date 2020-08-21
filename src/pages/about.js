@@ -5,7 +5,7 @@ import {Row} from 'react-bootstrap';
 import styled from '@emotion/styled';
 
 import Layout from "../componentes/Layout"
-import SEO from "../components/seo"
+import SEO from "../componentes/seo"
 
 const CustomRow = styled(Row)`
   margin-bottom:2rem;
@@ -62,7 +62,7 @@ const AboutPage = () => {
           >
             <Image
               fluid={imgs.img1.sharp.fluid}
-              alt="Clases en línea"
+              alt="Clases de yoga con Gilberto Carrillo"
               className="mt-4 mb-4"
               fadeIn={true}
             />

@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {Modal} from "react-bootstrap";
 
-import ContactoForm from "../components/contactoForm"
+import ContactoForm from "../componentes/contactoForm"
 import Header from './header/Header';
 import SideBar from './SideBar';
 import Footer from './Footer';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './layout.scss';
 
 const Layout = ({children}) => {
 

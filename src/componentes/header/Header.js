@@ -35,7 +35,7 @@ const Header = ({menuOpen, setMenuOpen, handleShow}) => {
                 >
                     <Image
                         fluid={imgs.imgHeader.sharp.fluid}
-                        alt="Logo"
+                        alt="Gilberto Carrillo Yoga"
                         className={classNames({
                             imgHeader:true,
                             open: menuOpen

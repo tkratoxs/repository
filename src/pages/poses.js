@@ -2,11 +2,10 @@ import React, {useState, useEffect} from "react"
 import {Row, Button} from 'react-bootstrap';
 import styled from "@emotion/styled";
 
-
-import PosesComponent from "../components/poses"
-import PoseFullComponent from "../components/poseFullComponent"
+import PosesComponent from "../componentes/poses"
+import PoseFullComponent from "../componentes/poseFullComponent"
 import Layout from "../componentes/Layout";
-import SEO from "../components/seo";
+import SEO from "../componentes/seo";
 
 import usePosturas from "../hooks/use-posturas";
 
